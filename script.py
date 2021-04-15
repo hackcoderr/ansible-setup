@@ -3,7 +3,7 @@ import os,subprocess
 os.system("sudo pip3 install ansible")
 os.system("sudo mkdir /etc/ansible")
 os.system("sudo mv ansible.cfg /etc/ansible/")
-os.system("sudo mv ip.txt /home/ec2-user/")
+os.system("sudo mv ip.txt /etc/ansible/ip")
 
 operating_system = subprocess.getoutput('hostnamectl').split('\n')[6].split(':')[1]
 #print(operating_system)
