@@ -11,10 +11,14 @@ This script is created for installing the Ansible Setup on **AWS Instance (Red H
 * Install *Python3* and *Git* in your AWS instance.
 
  > _sudo yum install python3 git -y_
+ 
+ * Clone this directory
+ 
+ > _git clone https://github.com/hackcoderr/Ansible-Setup.git_
   
 * Go inside *Ansible-Setup* directory.
 
-> _mkdir Ansible-Setup_
+> _cd Ansible-Setup/_
  
 * Run the *script.py* file.
 
