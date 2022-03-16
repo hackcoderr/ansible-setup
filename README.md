@@ -9,72 +9,34 @@ This script is created for installing the Ansible Setup on **AWS Instance (Red H
 
 ## Installation
 
-* Install *Python3* and *Git* in your AWS instance.
+* Install ``Python3`` and ``Git`` on controller node.
 
- ```
- sudo yum install python3 git -y
- ```
+```
+# for RHEL/Centos 
+sudo yum install python3 git -y
+
+# for ubuntu
+sudo apt install python3 git -y
+```
  
- * Clone this directory
+* Clone this repository and go inside it.
  
- ```
- git clone https://github.com/hackcoderr/Ansible-Setup.git
- ```
+```
+git clone https://github.com/hackcoderr/ansible-setup.git
+cd ansible-setup/
+```
   
-* Go inside *Ansible-Setup* directory.
-```
-cd Ansible-Setup/
-```
  
-* Run the *script.py* file.
+* Run the ``script.py`` file to install the ansible.
 
 ```
 python3 script.py
 ```
 
 ### How to configure dynamic Inventory
-#
- * Make a folder which will contains all the informations of inventory.
- ```
- sudo mkdir -p /etc/ansible/hosts
- ```
- * Go inside **/etc/ansible/ansible.cfg** directory and set the path of your inventory folder which you made earlier.
- 
- ```
- [defaults]
- inventory=/hosts
- ```
- * After saving inventoty path, download precreted python [ec2.py](https://github.com/ansible/ansible/blob/stable-2.9/contrib/inventory/ec2.py) and [ec2.ini](https://github.com/ansible/ansible/blob/stable-2.9/contrib/inventory/ec2.ini) files. So follow the  below syntex to download them.
- ```
- wget https://github.com/ansible/ansible/blob/stable-2.9/contrib/inventory/ec2.py
- 
- wget https://github.com/ansible/ansible/blob/stable-2.9/contrib/inventory/ec2.ini
-```
 
-* Convert both files into executable mode.
-```
-chmod +x ec2.py
+*  Open ``ec2.ini`` file and give ``access key`` and ``secret key`` of your [AWS IAM User](https://www.techtarget.com/searchcloudcomputing/tutorial/Step-by-step-guide-on-how-to-create-an-IAM-user-in-AWS) at the bottom of ``ec2.ini`` file.
 
-chmod +x ec2.init
-```
-* Open your **ec2.py** with help of any editor like *vim* and *vi* and comment **from ansible.module_utils import ec2 as ec2_utils** line which is existing at **172** in your **ec2.yml** file.
-```
-from ansible.module_utils import six
-#from ansible.module_utils import ec2 as ec2_utils
-from ansible.module_utils.six.moves import configparser
-```
-**Note**: If your controller node has **Python3** then replace the location of **shebang**(#!) from **#!/usr/bin/env python** to **#!/usr/bin/python3**.eg:
-```
-#!/usr/bin/python3
-
-'''
-EC2 external inventory script
-=================================
-Generates inventory that Ansible can understand by making API request to
-AWS EC2 using the Boto library.
-
-```
-* Step-6: Now open **ec2.ini** file and give your access and secret key which will mentioned at the bottom of **ec2.ini** file.
 ```
 [credentials]
 
@@ -94,79 +56,38 @@ aws_access_key_id = AXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXX
 ```
 
-* Step-7: Install **boto and boto3** python library.
+### Test
 
-**Note**: Python should be installed to to download and install python libraries.
+* Run to check your available hosts.
+```ansible all --list-hosts```
 
-* *If your controller node has python 1 or 2 version then use.*
-```
-sudo pip install boto
+* Ping your instances through ``tags`` which running on your AWS Account.
 
-sudo pip install boto3
 ```
- * *Or your controller node has python 3 then use.*
- ```
- sudo pip3 install boto
- 
- sudo pip3 install boto3
- ```
- * Now your dynamic inventory configuration is done.If your AWS Account has any launched instance the check with below command.
- ```
-[root@controller_node~]$ ansible all --list-hosts
-[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
-  hosts (1):
-    15.206.148.130
-```
-* if you want to ping your instance or run the playbook on your instance then give the **tagname** of your instance. eg:
-```
-[root@controller_node ~]$ ansible tag_Name_testing_os -m ping
-[WARNING]: Invalid characters were found in group names but not replaced, use
--vvvv to see details
-13.233.92.62 | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/libexec/platform-python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
+ansible tag_Name_<tag_name> -m ping
+# ansible tag_Name_testing_os -m ping
 ```
 
 ## Instructions
 
-* Ansible configuration file location.
-``/etc/ansible/ansible.cfg``
+* Ansible configuration file location: ``/etc/ansible/ansible.cfg``
 
-* Inventory file location in **ansible.cfg** 
-``inventory=/etc/ansible/ip``
+* Static Inventory file location: ``inventory=/etc/ansible/hosts``
 
-* Location of private key in **ansible.cfg** when you're using AWS Instance as a *Managed Node*
-
-``private_key_file=/etc/keys/mykey.pem``
-
-* To transfer the private key into controller node, you can use **winscp** software when you are working on **Windows** and you're using in **linux**, you can use  **scp** command.
-* After transferring private key into controller node, you have to change the permission of key, otherwise you can face some permission issuse to access the managed node.
-``chmod 400 private_key.pem``
-
-**Note** : If you want to change private key and inventory file location, you can change.
+* Dynamic Inventory file location: ``inventory=/etc/ansible/ec2.py``
 
 
+* EC2 keypair location in ``ansible.cfg``. so transfer your keypair at the same location: ``private_key_file=/etc/keys/<keypair-name>.pem``
 
-you will need to install sshpass on the client server you are running your code in which is a tool that is not installed by default on most Linux distro
 
-* if you are in Ubuntu use this command.
+* For transferring the keypair into controller node,  use ``winscp`` software when you are working on ``Windows`` as local system and you're using in ``linux``, you can use  ``scp`` command.
+
+* After transferring keypair into controller node, you have to change the permission of key, otherwise you can face some permission issuse to access the managed node.
+
 ```
-apt-get install sshpass
-```
-* on centOS/redhat use this install epel
-```
-wget https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/epel-release-6-8.noarch.rpm
-rpm -ivh epel-release-6-8.noarch.rpm
+chmod 400 <keypair-name>.pem
 ```
 
-* install sshpass
-```
-yum --enablerepo=epel -y install sshpass
-```
 #
 
  <!--social media icon-->
