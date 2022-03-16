@@ -50,6 +50,24 @@ python3 script.py
 
 **Note** : If you want to change private key and inventory file location, you can change.
 
+
+
+you will need to install sshpass on the client server you are running your code in which is a tool that is not installed by default on most Linux distro
+
+* if you are in Ubuntu use this command.
+```
+apt-get install sshpass
+```
+* on centOS/redhat use this install epel
+```
+wget https://archives.fedoraproject.org/pub/archive/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+```
+
+* install sshpass
+```
+yum --enablerepo=epel -y install sshpass
+```
 #
 
  <!--social media icon-->
