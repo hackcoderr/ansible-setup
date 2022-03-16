@@ -14,6 +14,6 @@ if 'Redhat' in operating_system or ':Amazon' in operating_system or 'Centos' in 
         os.system("sudo yum install sshpass -y")
 elif 'Ubuntu' in operating_system:
         os.system("sudo apt-get update -y")
-        os.system("sudo apt-install openssh-server -y")
-        os.system("sudo systemctl enable ssh -y")
+        os.system("sudo apt install openssh-server -y")
+        os.system("sudo systemctl enable ssh")
         os.system("sudo apt-get install sshpass -y")
