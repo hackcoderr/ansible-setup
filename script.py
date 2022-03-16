@@ -1,9 +1,11 @@
 import os,subprocess
 
-os.system("sudo pip3 install ansible")
+os.system("sudo pip3 install ansible boto3 boto")
 os.system("sudo mkdir /etc/ansible")
 os.system("sudo mkdir -p /etc/ansible/hosts")
 os.system("sudo mv ec2.py ec2.ini ansible.cfg ip.txt /etc/ansible/")
+os.system("sudo chmod +x /etc/ansible/ec2.py")
+os.system("sudo chmod +x /etc/ansible/ec2.ini")
 
 operating_system = subprocess.getoutput('hostnamectl').split('\n')[6].split(':')[1]
 #print(operating_system)
