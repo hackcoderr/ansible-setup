@@ -1,6 +1,22 @@
 # :sparkles: Ansible-Setup :sparkles:
 
-This script is created for installing the Ansible Setup on **AWS Instance (Red Hat Enterprise Linux 8)**.
+**Tested on:**
+ 
+![RHEL](https://img.shields.io/badge/Red%20Hat-EE0000?style=for-the-badge&logo=redhat&logoColor=white)
+![centos](https://img.shields.io/badge/Cent%20OS-262577?style=for-the-badge&logo=CentOS&logoColor=white)
+![ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![amazon](https://img.shields.io/badge/Amazon_Linux-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+
+**Structure**
+```
+.
+├── ansible.cfg
+├── keypair.pem
+├── ec2.ini
+├── ec2.py
+└── hosts
+```
+
 
 ## Pre-requisite
 
@@ -9,17 +25,18 @@ This script is created for installing the Ansible Setup on **AWS Instance (Red H
 
 ## Installation
 
-* Install ``Python3`` and ``Git`` on controller node.
+Install ``Python3`` and ``Git`` on controller node.
 
 ```
-# for RHEL/Centos 
-sudo yum install python3 git -y
+sudo yum install python3 git -y       # for RHEL/Centos 
+```
 
-# for ubuntu
-sudo apt install python3 git -y
+```
+sudo apt install python3 git -y       # for ubuntu
+sudo apt-get -y install python3-pip
 ```
  
-* Clone this repository and go inside it.
+Clone this repository and go inside it.
  
 ```
 git clone https://github.com/hackcoderr/ansible-setup.git
@@ -27,15 +44,20 @@ cd ansible-setup/
 ```
   
  
-* Run the ``script.py`` file to install the ansible.
+Run the ``script.py`` file to install the ansible.
 
 ```
 python3 script.py
 ```
 
-### How to configure dynamic Inventory
+## How to configure dynamic Inventory
 
-*  Open ``ec2.ini`` file and give ``access key`` and ``secret key`` of your [AWS IAM User](https://www.techtarget.com/searchcloudcomputing/tutorial/Step-by-step-guide-on-how-to-create-an-IAM-user-in-AWS) at the bottom of ``ec2.ini`` file.
+Open ``ec2.ini`` file and give ``access key`` and ``secret key`` of your [AWS IAM User](https://www.techtarget.com/searchcloudcomputing/tutorial/Step-by-step-guide-on-how-to-create-an-IAM-user-in-AWS) at the bottom of ``ec2.ini`` file.
+
+```
+sudo vi /etc/ansible/ec2.ini
+```
+
 
 ```
 [credentials]
@@ -56,12 +78,14 @@ aws_access_key_id = AXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXX
 ```
 
-### Test
+## Test
 
-* Run to check your available hosts.
-```ansible all --list-hosts```
+Run to check your available hosts.
+```
+ansible all --list-hosts
+```
 
-* Ping your instances through ``tags`` which running on your AWS Account.
+Ping your instances through ``tags`` which running on your AWS Account.
 
 ```
 ansible tag_Name_<tag_name> -m ping
@@ -82,7 +106,7 @@ ansible tag_Name_<tag_name> -m ping
 
 * For transferring the keypair into controller node,  use ``winscp`` software when you are working on ``Windows`` as local system and you're using in ``linux``, you can use  ``scp`` command.
 
-* After transferring keypair into controller node, you have to change the permission of key, otherwise you can face some permission issuse to access the managed node.
+After transferring keypair into controller node, you have to change the permission of key, otherwise you can face some permission issuse to access the managed node.
 
 ```
 chmod 400 <keypair-name>.pem
