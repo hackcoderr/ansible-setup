@@ -17,6 +17,9 @@
 └── hosts
 ```
 
+## Freatures
+1. Installing and Configuring Ansible on multiple OS without knowing internal.
+2. Setting up Ansible for EC2 with Dynamic Inventory.
 
 ## Pre-requisite
 
