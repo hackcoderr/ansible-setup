@@ -16,7 +16,9 @@
 ├── ec2.py
 └── hosts
 ```
-
+## Freatures
+* Installing and Configuring Ansible on multiple OS without knowing internal.
+* Setting up Ansible for EC2 with Dynamic Inventory.
 
 ## Pre-requisite
 
