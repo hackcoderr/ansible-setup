@@ -1,4 +1,4 @@
-# :sparkles: Ansible-Setup :sparkles:
+# Ansible-Setup
 
 **Tested on:**
  
@@ -20,8 +20,8 @@
 
 ## Pre-requisite
 
-* Python3
-* Git
+1. Python3
+2. Git
 
 ## Installation
 
@@ -94,17 +94,17 @@ ansible tag_Name_<tag_name> -m ping
 
 ## Instructions
 
-* Ansible configuration file location: ``/etc/ansible/ansible.cfg``
+> Ansible configuration file location: ``/etc/ansible/ansible.cfg``
 
-* Static Inventory file location: ``inventory=/etc/ansible/hosts``
+> Static Inventory file location: ``inventory=/etc/ansible/hosts``
 
-* Dynamic Inventory file location: ``inventory=/etc/ansible/ec2.py``
-
-
-* EC2 keypair location in ``ansible.cfg``. so transfer your keypair at the same location: ``private_key_file=/etc/keys/<keypair-name>.pem``
+> Dynamic Inventory file location: ``inventory=/etc/ansible/ec2.py``
 
 
-* For transferring the keypair into controller node,  use ``winscp`` software when you are working on ``Windows`` as local system and you're using in ``linux``, you can use  ``scp`` command.
+> EC2 keypair location in ``ansible.cfg``. so transfer your keypair at the same location: ``private_key_file=/etc/keys/<keypair-name>.pem``
+
+
+> For transferring the keypair into controller node,  use ``winscp`` software when you are working on ``Windows`` as local system and you're using in ``linux``, you can use  ``scp`` command.
 
 After transferring keypair into controller node, you have to change the permission of key, otherwise you can face some permission issuse to access the managed node.
 
@@ -112,18 +112,13 @@ After transferring keypair into controller node, you have to change the permissi
 chmod 400 <keypair-name>.pem
 ```
 
-#
+##
 
  <!--social media icon-->
-<div align="center">
  
-**If you're facing any issue in this setup, you can reach me out through the following handles**
+If you're facing any issue in this setup, you can reach me out through the following handles
  
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/hackcoderr)
 [![Linkedin Badge](https://img.shields.io/badge/-Sachin%20Kumar-blue?style=social&logo=Linkedin&logoColor=blue&link=https://www.linkedin.com/in/hackcoderr/)](https://www.linkedin.com/in/hackcoderr/) [![Twitter Badge](http://img.shields.io/badge/-@hackcoderr-1ca0f1?style=social&logo=twitter&logoColor=blue&link=https://twitter.com/hackcoderr)](https://twitter.com/hackcoderr) [![GitHub followers](https://img.shields.io/github/followers/hackcoderr?label=Follow&style=social)](https://github.com/hackcoderr/?tab=follow)
 [![Instagram Badge](https://img.shields.io/badge/-hackcoderr-blue?style=social&logo=Instagram&link=https://www.instagram.com/hackcoderr/)](https://www.instagram.com/hackcoderr/) 
 ![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=hackcoderr.hackcoderr)
-
-</div>  
-
-</br>
