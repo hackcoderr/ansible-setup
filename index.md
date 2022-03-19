@@ -114,6 +114,15 @@ After transferring keypair into controller node, you have to change the permissi
 ```
 chmod 400 <keypair-name>.pem
 ```
+ 
+ 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Connect with Me.
 
