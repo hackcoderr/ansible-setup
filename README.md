@@ -31,6 +31,7 @@ Install ``Python3`` and ``Git`` on controller node.
 
 ```
 sudo yum install python3 git -y       # for RHEL/Centos 
+sudo yum install python3-pip -y
 ```
 
 ```
