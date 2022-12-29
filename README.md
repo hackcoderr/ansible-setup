@@ -115,6 +115,20 @@ After transferring keypair into controller node, you have to change the permissi
 chmod 400 <keypair-name>.pem
 ```
 
+## Troubleshoot
+**Issue type**
+
+when default profile has keys not set.
+```
+ ERROR: "Forbidden", while: getting ElastiCache clusters
+```
+**Proposed Fix**
+
+In my case i don't use Elasticache set the following in ``ec2.ini`` file
+``'elasticache = False'`` and it completed sucessfully and listed all the instances
+
+
+
 #
 
  <!--social media icon-->
