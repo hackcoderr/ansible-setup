@@ -116,7 +116,7 @@ chmod 400 <keypair-name>.pem
 ```
 
 ## Troubleshoot
-**Issue type**
+**Issue type: 1**
 
 when default profile has keys not set.
 ```
@@ -126,6 +126,23 @@ when default profile has keys not set.
 
 In my case i don't use Elasticache set the following in ``ec2.ini`` file
 ``'elasticache = False'`` and it completed sucessfully and listed all the instances
+
+**Issue type: 2**
+
+if you got this type of error, then it can be due to ansible user hasn't enough permission.
+```
+XXXXXXXX | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Load key \"/etc/ansible/mykey.pem\": Permission denied\r\nec2-user@XXXXXXX: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).",
+    "unreachable": true
+}
+```
+**Proposed Fix**
+
+``` 
+sudo ln -s /usr/local/bin/ansible /bin 
+```
+now run ansible command with ``sudo``.
 
 
 
