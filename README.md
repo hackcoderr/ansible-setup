@@ -144,6 +144,17 @@ sudo ln -s /usr/local/bin/ansible /bin
 ```
 now run ansible command with ``sudo``.
 
+**Encryption Issue**
+
+```
+ERROR: Ansible requires the locale encoding to be UTF-8; Detected ISO8859-1.
+```
+
+**Resolved**
+```
+export LC_ALL="en_US.UTF-8"
+```
+For more [details](https://stackoverflow.com/questions/65525716/why-do-i-get-a-locale-error-even-though-it-is-set)
 
 
 #
