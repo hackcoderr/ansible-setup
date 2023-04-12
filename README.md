@@ -154,6 +154,16 @@ ERROR: Ansible requires the locale encoding to be UTF-8; Detected ISO8859-1.
 ```
 export LC_ALL="en_US.UTF-8"
 ```
+
+To permanently set the LC_ALL environment variable to en_US.UTF-8, you can add the following line to your shell's configuration file (e.g., .bashrc, .zshrc, etc.):
+
+```
+echo 'export LC_ALL="en_US.UTF-8"' >> ~/.bashrc
+```
+After saving the changes, you can either open a new terminal window or run the following command in the current terminal to apply the changes:
+```
+source ~/.bashrc
+```
 For more [details](https://stackoverflow.com/questions/65525716/why-do-i-get-a-locale-error-even-though-it-is-set)
 
 
